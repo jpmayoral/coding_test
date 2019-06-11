@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Redstage_Banner::general" 
+            title="Redstage" 
+            module="Redstage_Banner" 
+            sortOrder="30" 
+            resource="Redstage_Banner::general"
+        />
+        <add id="Redstage_Banner::banner" 
+            title="Manage Banners" 
+            module="Redstage_Banner" 
+            sortOrder="10" 
+            action="redstage_banner/banner" 
+            resource="Redstage_Banner::banner" 
+            parent="Redstage_Banner::general"
+        />
+    </menu>
+</config>

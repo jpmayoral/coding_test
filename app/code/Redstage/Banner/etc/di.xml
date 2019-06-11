@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+	<preference for="\Redstage\Banner\Api\Data\BannerInterface" type="\Redstage\Banner\Model\Banner"/>
+    <preference for="\Redstage\Banner\Api\BannerRepositoryInterface" type="\Redstage\Banner\Model\BannerRepository"/>
+
+	<!-- OpsIntegration Backend Grid -->
+	<virtualType name="Redstage\Banner\Model\ResourceModel\Execution\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+	    <arguments>
+	        <argument name="mainTable" xsi:type="string">redstage_banner</argument>
+	        <argument name="resourceModel" xsi:type="string">Redstage\Banner\Model\ResourceModel\Banner</argument>
+	    </arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+	    <arguments>
+	        <argument name="collections" xsi:type="array">
+	            <item name="redstage_banner_listing_data_source" xsi:type="string">Redstage\Banner\Model\ResourceModel\Execution\Collection</item>
+	        </argument>
+	    </arguments>
+	</type>
+
+	<!-- Register Logger in Dependency Injection -->
+	<type name="Redstage\Banner\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+	<type name="Redstage\Banner\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">redstageBannerLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Redstage\Banner\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>	
+
+</config>
